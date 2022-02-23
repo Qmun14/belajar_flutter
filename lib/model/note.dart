@@ -21,7 +21,6 @@ class Note {
       );
 
   Map<String, dynamic> toMap() => {
-        DBNote.COLUMN_ID: id,
         DBNote.COLUMN_TITLE: title,
         DBNote.COLUMN_BODY: body,
         DBNote.COLUMN_DATE: date,

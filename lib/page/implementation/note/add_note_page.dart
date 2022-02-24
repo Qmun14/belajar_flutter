@@ -49,7 +49,7 @@ class _AddNotePageState extends State<AddNotePage> {
           children: [
             buildInput(_controllerTitle, 'Title'),
             const SizedBox(height: 16),
-            buildInput(_controllerBody, 'Body'),
+            buildInputArea(_controllerBody, 'Body'),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => addNote(),
@@ -69,6 +69,19 @@ class _AddNotePageState extends State<AddNotePage> {
         labelText: label,
         border: const OutlineInputBorder(),
       ),
+    );
+  }
+
+  Widget buildInputArea(TextEditingController controller, String label) {
+    return TextFormField(
+      controller: controller,
+      validator: (value) => value == '' ? "Don't Empty" : null,
+      decoration: InputDecoration(
+        labelText: label,
+        border: const OutlineInputBorder(),
+      ),
+      minLines: 1,
+      maxLines: 8,
     );
   }
 }

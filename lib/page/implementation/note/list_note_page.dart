@@ -1,6 +1,7 @@
 import 'package:belajar_flutter/db/db_note.dart';
 import 'package:belajar_flutter/model/note.dart';
 import 'package:belajar_flutter/page/implementation/note/add_note_page.dart';
+import 'package:belajar_flutter/page/implementation/note/detail_note_page.dart';
 import 'package:flutter/material.dart';
 
 class ListNotePage extends StatefulWidget {
@@ -33,6 +34,14 @@ class _ListNotePageState extends State<ListNotePage> {
               itemBuilder: (context, index) {
                 Note note = _listNote[index];
                 return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailNotePage(note: note),
+                      ),
+                    );
+                  },
                   title: Text(note.title ?? ''),
                   trailing: IconButton(
                       onPressed: () {}, icon: const Icon(Icons.delete)),

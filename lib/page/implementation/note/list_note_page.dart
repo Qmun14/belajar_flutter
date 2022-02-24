@@ -2,6 +2,7 @@ import 'package:belajar_flutter/db/db_note.dart';
 import 'package:belajar_flutter/model/note.dart';
 import 'package:belajar_flutter/page/implementation/note/add_note_page.dart';
 import 'package:belajar_flutter/page/implementation/note/detail_note_page.dart';
+import 'package:belajar_flutter/page/implementation/note/update_note_page.dart';
 import 'package:flutter/material.dart';
 
 class ListNotePage extends StatefulWidget {
@@ -16,6 +17,11 @@ class _ListNotePageState extends State<ListNotePage> {
     _listNote.clear();
     _listNote = await DBNote().getAllNote();
     setState(() {});
+  }
+
+  void deleteNote(int id) {
+    DBNote().deleteWhereId(id);
+    getListNote();
   }
 
   @override
@@ -42,9 +48,24 @@ class _ListNotePageState extends State<ListNotePage> {
                       ),
                     );
                   },
+                  leading: CircleAvatar(
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UpdateNotePage(note: note)),
+                        ).then((value) => getListNote());
+                      },
+                      icon: const Icon(Icons.edit),
+                    ),
+                  ),
                   title: Text(note.title ?? ''),
                   trailing: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.delete)),
+                      onPressed: () {
+                        deleteNote(note.id!);
+                      },
+                      icon: const Icon(Icons.delete)),
                 );
               },
             )

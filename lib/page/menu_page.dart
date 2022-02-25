@@ -2,6 +2,7 @@ import 'package:belajar_flutter/page/flutter_network_page.dart';
 import 'package:belajar_flutter/page/implementation/basket_counter_page.dart';
 import 'package:belajar_flutter/page/implementation/bio_sosmed_page.dart';
 import 'package:belajar_flutter/page/implementation/calculator_page.dart';
+import 'package:belajar_flutter/page/implementation/game/game_gallery_page.dart';
 import 'package:belajar_flutter/page/implementation/note/list_note_page.dart';
 import 'package:belajar_flutter/page/implementation/random_dice_page.dart';
 import 'package:belajar_flutter/page/implementation/webview_page.dart';
@@ -392,6 +393,17 @@ class MenuPage extends StatelessWidget {
                   );
                 },
                 child: const Text('List Note Page'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GameGalleryPage(),
+                    ),
+                  );
+                },
+                child: const Text('Game Gallery Page'),
               ),
             ],
           ),

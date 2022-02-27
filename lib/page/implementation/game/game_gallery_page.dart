@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:belajar_flutter/page/implementation/game/detail_game_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -42,30 +43,42 @@ class GameGalleryPage extends StatelessWidget {
                     mainAxisSpacing: 4),
                 itemBuilder: (context, index) {
                   Map game = snapshot.data![index];
-                  return Stack(
-                    fit: StackFit.expand,
-                    children: [
-                      Image.network(
-                        game['thumbnail'],
-                        fit: BoxFit.cover,
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          color: Colors.black.withOpacity(00.5),
-                          child: Text(
-                            game['title'],
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                            ),
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailGamePage(
+                            idGame: game['id'],
                           ),
                         ),
-                      )
-                    ],
+                      );
+                    },
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Image.network(
+                          game['thumbnail'],
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            color: Colors.black.withOpacity(00.5),
+                            child: Text(
+                              game['title'],
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   );
                 },
               );
